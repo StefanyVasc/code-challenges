@@ -1,0 +1,58 @@
+.tab input {
+  position: absolute;
+  opacity: 0;
+  z-index: -1;
+}
+.tabContent {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.35s, margin-top 0.35s;
+  border-bottom: 1px solid var(--light-pink);
+  margin-top: 1.25rem;
+}
+
+.tabContent > p {
+  color: var(--light-purple);
+  margin-bottom: 1.25rem;
+}
+
+.tab input:checked ~ .tabContent {
+  max-height: 10rem;
+  margin-top: 1.25rem;
+}
+
+.tab input:not(:checked) + .tabLabel {
+  padding-bottom: 1rem;
+}
+
+.tabLabel {
+  display: flex;
+  color: var(--dark-purple);
+  font-size: 1.5rem;
+  font-weight: 800;
+  cursor: pointer;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.tabLabel::after {
+  content: url(../assets/plus.svg);
+  text-align: center;
+  transition: transform 0.35s, margin-left 0.35s;
+  margin-left: 0.5rem;
+}
+
+.tab input:checked + .tabLabel::after {
+  transform: rotate(180deg);
+  content: url(../assets/minus.svg);
+}
+
+.tab input:not(:checked) + .tabLabel:hover::after {
+  transform: translate(0, 0.25rem);
+}
+
+@media (max-width: 768px) {
+  .tabLabel {
+    font-size: 1.2rem;
+  }
+}
